@@ -1,0 +1,174 @@
+/* Genel Stiller */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    width: 90px;
+    height: 90px;
+    margin-left: 650px;
+}
+
+.header .buttons {
+    display: flex;
+    gap: 50px;
+    margin-right: 650px;
+}
+
+.header .buttons button {
+   
+    padding: 10px 15px;
+    background-color: #e00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.header .buttons button:hover {
+    background-color: #b00;
+}
+
+.payment-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 10px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-container h2 {
+    margin-left: 50px;
+     margin-bottom: 100px;
+    color: #888787;
+}
+
+.payment-layout {
+    display: flex;
+    gap: 20px;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.crypto-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+.payment-options {
+    display: flex;
+    flex-direction: column; /* Dikey hizalama için */
+    gap: 30px; /* Kutular arasındaki mesafe */
+}
+
+.crypto-option img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.crypto-option span {
+    font-weight: bold;
+    color: #333;
+}
+
+.crypto-option:hover {
+    background-color: #eee;
+}
+
+.crypto-option.selected {
+    border: 2px solid #0f0;
+    background: #e0ffe0;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.payment-details .qr-code img {
+    width: 180px;
+    height: 180px;
+    margin-block: 50px;
+}
+
+.payment-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-address span {
+    font-weight: bold;
+    color: #888787;
+    margin-top: -50px;
+}
+
+.payment-address button {
+    padding: 5px 10px;
+    background-color: #0f0;
+    margin-top:-50px ;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Yazıyı ortalar */
+    font-size: 18px;
+    color: #e00;
+    font-weight: bold;
+    gap: 5px; /* Süre ve yazı arasındaki boşluk */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    margin-top: auto;
+}
