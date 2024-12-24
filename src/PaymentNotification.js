@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './payment.css';
+import { getDatabase, ref, push } from 'firebase/database'; // Firebase Database
+import firebaseApp from './firebase'; // Firebase yapılandırmanızı buraya ekleyin
 
 function PaymentNotification() {
   const [message, setMessage] = useState('');
-  const [csrfToken, setCsrfToken] = useState('');
   const [loading, setLoading] = useState(false); // Loading state
-
-  useEffect(() => {
-    const getCSRFToken = async () => {
-      try {
-        const response = await fetch('https://www.senseistrategypayment.com/api/get-csrf-token/', {
-          credentials: 'include', // Include cookies
-        });
-        const data = await response.json();
-        setCsrfToken(data.csrfToken);
-      } catch (error) {
-        console.error('Unable to fetch CSRF token:', error);
-      }
-    };
-
-    getCSRFToken();
-  }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -29,23 +14,13 @@ function PaymentNotification() {
 
     setLoading(true); // Set loading state
     try {
-      const response = await fetch('https://www.senseistrategypayment.com/api/submit-payment/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken, // Include CSRF token in header
-        },
-        body: JSON.stringify({ email, txid }),
-        credentials: 'include',
-      });
+      const db = getDatabase(firebaseApp);
+      const notificationsRef = ref(db, 'payment_notifications'); // Firebase veritabanı yolu
 
-      const data = await response.json();
-      if (response.ok) {
-        setMessage('The form has been successfully submitted!');
-      } else {
-        setMessage(`Error: ${data.error || 'Unable to process your request.'}`);
-      }
+      await push(notificationsRef, { email, txid });
+      setMessage('The form has been successfully submitted!');
     } catch (error) {
+      console.error('Error submitting form:', error);
       setMessage('An error occurred. Please try again.');
     }
     setLoading(false); // Reset loading state
@@ -62,7 +37,7 @@ function PaymentNotification() {
           <a href="/">
             <button>Return to Payment Page</button>
           </a>
-          <a href="https://senseistrategypayment.com/">
+          <a href="https://senseistrategy.com/">
             <button>Home Click</button>
           </a>
         </div>
